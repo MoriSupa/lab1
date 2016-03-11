@@ -17,7 +17,7 @@ public class Parser implements I_Parser {
 /********************************************************/
 	//Do any thing you want here, 'mygithubhlm' 
 	@Override
-	public ArrayList<Beverage> parse(String orders) {
+	public ArrayList<Beverage> parse(String[] orders) {
 		// TODO Auto-generated method stub
 		return null;
 	}
