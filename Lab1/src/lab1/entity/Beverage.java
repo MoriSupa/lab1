@@ -1,7 +1,8 @@
-package lab1;
+package lab1.entity;
+
 
 public class Beverage {
-	protected SizeFactor sizeFactor;
+	
 
 	public double cost() {
 		return 0;
