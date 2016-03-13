@@ -24,7 +24,7 @@ public class Main {
 		double outcome=accounter.compute(parser.parse(args));
 		
 		//print some desciption here
-		
+		System.out.println("Hello World!");
 		
 
 		//output the total cost
