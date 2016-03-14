@@ -13,8 +13,23 @@ public class Beverage {
 	
 	
 	
+	//basic constructors
+	public Beverage(String _base,String _size,String _category){
+		this.base=_base;
+		this.size=_size;
+		this.category=_category;
+		this.ingredients=new ArrayList<String>();
+	}
 	
-	
+	public Beverage(String _base,String _size,String _category,String[] _ingrs){
+		this.base=_base;
+		this.size=_size;
+		this.category=_category;
+		this.ingredients=new ArrayList<String>();
+		for(int i=0;i<_ingrs.length;i++){
+			this.ingredients.add(_ingrs[i]);
+		}
+	}
 	
 	
 	//this function is for presenting the beverage detail
@@ -56,6 +71,7 @@ public class Beverage {
 
 	//more operations for ingredients
 	
+	
 	//to add an ingredient for a beverage
 	public void addIngredients(String ing){
 		this.ingredients.add(ing);
@@ -64,7 +80,22 @@ public class Beverage {
 	public void clearIngredients(String ing){
 		this.ingredients.clear();
 	}
+	
+	
+	
+	//override for equals, for whether two beverage are equals
+	public boolean equals(Object obj){
+		Beverage bev=(Beverage)obj;
+		boolean ingr_test=true;
+		for(int i=0;i<bev.ingredients.size();i++){
+			ingr_test=ingr_test&&(this.ingredients.get(i).equals(bev.ingredients.get(i)));
+		}
+		
+		return (this.base.equals(bev.base)&&this.size.equals(bev.size)&&this.category.equals(bev.category)&&ingr_test);
+	}
 
 
+	
+	
 
 }
