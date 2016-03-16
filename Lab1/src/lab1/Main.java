@@ -10,10 +10,9 @@ import lab1.handler.Parser;
 import lab1.handler.Retriever;
 
 public class Main {
-	private final static String FILEPATH="";
 	public static void main(String[] args) {
 		//read the dictionary
-		I_Retriever rtr=new Retriever(FILEPATH);
+		I_Retriever rtr=new Retriever();
 		JSONObject dic=rtr.retrieve();
 		
 		//init parser and accounter
@@ -28,9 +27,5 @@ public class Main {
 		
 
 		//output the total cost
-		
-		
 	}
-	
-	
 }
