@@ -1,21 +1,26 @@
 package lab1.handler;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 //do anything you want:'Niu1234'
 
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 public class Retriever implements I_Retriever {
-	private String url;
-	
-	public Retriever(String _url){
-		this.url=_url;		
-	}	
+	private final static String FILEPATH = "";
+
+	public Retriever() {}
 	
 	@Override
 	public JSONObject retrieve() {
 		//use the this.url as file path
 	     //从给定位置获取文件
-        File file = new File(url);
+        File file = new File(FILEPATH);
         BufferedReader reader = null;
         //返回值,使用StringBuffer
         StringBuffer data = new StringBuffer();
