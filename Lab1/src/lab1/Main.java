@@ -1,7 +1,10 @@
 package lab1;
 
+import java.util.ArrayList;
+
 import org.json.JSONObject;
 
+import lab1.entity.Beverage;
 import lab1.handler.Accounter;
 import lab1.handler.I_Accounter;
 import lab1.handler.I_Parser;
@@ -19,11 +22,17 @@ public class Main {
 		I_Parser parser=new Parser(dic);
 		I_Accounter accounter=new Accounter(dic);
 		
+
 		//compute the total cost
+
+		
+
 		double outcome=accounter.compute(parser.parse(args));
 		
 		//print some desciption here
-		System.out.println("Hello World!");
+
+		
+		
 		
 
 		//output the total cost

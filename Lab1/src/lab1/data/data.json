@@ -36,14 +36,14 @@
 		"ginger":0.6
 	},
 	"mix":{
-		"mocha":"espresso * chocolate",
-		"latte":"espresso * milk",
-		"cappuccino":"espresso * whip cream",
-		"decaf mocha":"decaf * chocolate",
-		"decaf latte":"decaf * milk",
-		"decaf cappuccino":"decaf * whip cream",
-		"flower tea":"green tea * jasmine",
-		"ginger tea":"green tea * ginger",
-		"tea latte":"red tea * milk"
+		"mocha":"espresso , chocolate",
+		"latte":"espresso , milk",
+		"cappuccino":"espresso , whip cream",
+		"decaf mocha":"decaf , chocolate",
+		"decaf latte":"decaf , milk",
+		"decaf cappuccino":"decaf , whip cream",
+		"flower tea":"green tea , jasmine",
+		"ginger tea":"green tea , ginger",
+		"tea latte":"red tea , milk"
 	}
 }

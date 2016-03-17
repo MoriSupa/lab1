@@ -34,7 +34,12 @@ public class Beverage {
 	
 	//this function is for presenting the beverage detail
 	public String getDescription(){
-		return "";
+		String des=size+" "+base+" with";
+		for(int i=0;i<ingredients.size();i++){
+			des=des+" "+ingredients.get(i);
+		}
+		
+		return des;
 	}
 	
 	//getter and setter for base

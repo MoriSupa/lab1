@@ -23,34 +23,35 @@ public class Parser implements I_Parser {
 		// TODO Auto-generated method stub
 		ArrayList<Beverage> result = new ArrayList<Beverage>();
 /**
- * 		´ÓJSONÎÄ¼þÖÐ»ñÈ¡µÄdicÎÄ¼þÖÐÇÐ·ÖµÃµ½Ò»Ð©JSON¶ÔÏó¡£
- * 		1£¬¿§·ÈµÄÖÖÀà
+ * 		ï¿½ï¿½JSONï¿½Ä¼ï¿½ï¿½Ð»ï¿½È¡ï¿½ï¿½dicï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ð·ÖµÃµï¿½Ò»Ð©JSONï¿½ï¿½ï¿½ï¿½
+ * 		1ï¿½ï¿½ï¿½ï¿½ï¿½Èµï¿½ï¿½ï¿½ï¿½ï¿½
  */
 		JSONObject basic = this.dic.getJSONObject("basic");
 		JSONObject coffee = basic.getJSONObject("coffee");
 		JSONObject coffeeKind = coffee.getJSONObject("kind");
 		
-//		2£¬²èµÄÖÖÀà
+//		2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		JSONObject tea = basic.getJSONObject("tea");
 		JSONObject teaKind = tea.getJSONObject("kind");
 		
-//		3£¬»ìºÏÒûÁÏµÄÖÖÀà
+//		3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½
 		JSONObject mix = this.dic.getJSONObject("mix");
 		
-//		ÓÃ¡°£»¡±·Ö¸î¶©µ¥Îªµ¥¸öÒûÁÏ£¬·Ö±ð´¦Àí
+//		ï¿½Ã¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸î¶©ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½Ö±ï¿½ï¿½ï¿½
 		String order = "";
 		for(int i=0;i<orders.length;i++){
 			order += orders[i]+" ";
 		}
 		String[] allBev = order.split(";"); 
 		
-//		forÑ­»·ÒÀ´Î´¦Àí´«ÈëµÄÃ¿¸ö¶©µ¥
+		
+//		forÑ­ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(int i = 0;i < allBev.length; i++){
-//			ÊµÀý»¯Ò»¸öÒûÁÏ
+//			Êµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			Beverage beverage = new Beverage("","","");
-			String[] orderStrs = allBev[i].split(" ");
+			String[] orderStrs = allBev[i].toLowerCase().split(" ");
 			List<String> listOrder = Arrays.asList(orderStrs);
-//			ÒûÁÏÊýÁ¿
+//			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			try{
 				Integer.parseInt(orderStrs[0]);
 				listOrder.remove(0);
@@ -71,7 +72,7 @@ public class Parser implements I_Parser {
 				beverage.setBase(listOrder.get(0));
 			}else if(mix.has(maybeBev)){  
 				String mixName = mix.getString(maybeBev);
-				String[] nameAndIngre = mixName.split("*");
+				String[] nameAndIngre = mixName.split(",");
 				if(coffeeKind.has(nameAndIngre[0])){
 					beverage.setCategory("coffee");
 				}else{
@@ -81,7 +82,7 @@ public class Parser implements I_Parser {
 				beverage.addIngredients(nameAndIngre[1]);
 			}else if(mix.has(listOrder.get(0))){
 				String mixName = mix.getString(listOrder.get(0));
-				String[] nameAndIngre = mixName.split("*");
+				String[] nameAndIngre = mixName.split(",");
 				if(coffeeKind.has(nameAndIngre[0])){
 					beverage.setCategory("coffee");
 				}else{
@@ -93,7 +94,7 @@ public class Parser implements I_Parser {
 				continue;
 			}
 			
-//			ÅÐ¶ÏÒûÁÏÃû×ÖÊÇÒ»¸ö×Ö»¹ÊÇÁ½¸ö×Ö
+//			ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if(beverage.getBase().equals(maybeBev)){
 				listOrder.remove(0);
 				listOrder.remove(1);
@@ -117,6 +118,7 @@ public class Parser implements I_Parser {
 					beverage.addIngredients(listOrder.get(j));
 				}
 			}
+			
 			result.add(beverage);
 		}
 		return result;
