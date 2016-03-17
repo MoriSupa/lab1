@@ -45,7 +45,7 @@ public class TestParser {
 
 	@Test
 	public void parseNameWrong() {
-		// What if there is no beverage name?
+		// What if there the beverage name is misspelled?
 		String orders[] = { "Mokha", "small", "milk", "milk" };
 		ArrayList<Beverage> result = parser.parse(orders);
 		assertNull(result);
@@ -61,23 +61,15 @@ public class TestParser {
 
 	@Test
 	public void parseSizeWrong() {
-		// What if there is no size information?
+		// What if the size is misspelled?
 		String orders[] = { "Mocha", "smoll", "milk", "milk" };
 		ArrayList<Beverage> result = parser.parse(orders);
 		assertNull(result);
 	}
 
 	@Test
-	public void parseNoIngr() {
-		// What if there is no ingredient?
-		String orders[] = { "Mocha", "small" };
-		ArrayList<Beverage> result = parser.parse(orders);
-		assertNull(result);
-	}
-
-	@Test
 	public void parseIngrWrong() {
-		// What if there is no ingredient?
+		// What if some ingredients are misspelled?
 		String orders[] = { "Mocha", "small", "nilk" };
 		ArrayList<Beverage> result = parser.parse(orders);
 		assertNull(result);
@@ -85,14 +77,44 @@ public class TestParser {
 
 	@Test
 	public void parseNormal() {
-		// What if there the input is "Mocha small milk milk" ?
-		String orders[] = { "Mocha", "small", "milk", "milk" };
+		// What if the input is "green tea small" ?
+		String orders[] = { "green", "tea", "small" };
 		ArrayList<Beverage> result = parser.parse(orders);
 
 		// construct the expected result
-		ArrayList<Beverage> expect = new ArrayList<Beverage>();
-		String[] ingrs1 = { "milk", "milk" };
-		expect.add(new Beverage("Mocha", "small", "Coffee", ingrs1));
-		assertEquals(expect, result);
+		assertEquals(new Beverage("green tea", "small", "tea"), result);
+	}
+
+	@Test
+	public void parseNormalWithIngrs() {
+		// What if the input is "green tea small chocolate" ?
+		String orders[] = { "green", "tea", "small", "chocolate" };
+		ArrayList<Beverage> result = parser.parse(orders);
+
+		// construct the expected result
+		String ingrs[] = { "chocolate" };
+		assertEquals(new Beverage("green tea", "small", "tea", ingrs), result);
+	}
+
+	@Test
+	public void parseMix() {
+		// What if the input is "Mocha small" ?
+		String orders[] = { "Mocha", "small" };
+		ArrayList<Beverage> result = parser.parse(orders);
+
+		// construct the expected result
+		String ingrs[] = { "chocolate" };
+		assertEquals(new Beverage("espresso", "small", "coffee", ingrs), result);
+	}
+
+	@Test
+	public void parseMixWithIngrs() {
+		// What if the input is "Mocha small whip cream" ?
+		String orders[] = { "Mocha", "small", "whip", "cream" };
+		ArrayList<Beverage> result = parser.parse(orders);
+
+		// construct the expected result
+		String ingrs[] = { "chocolate", "whip cream" };
+		assertEquals(new Beverage("espresso", "small", "coffee", ingrs), result);
 	}
 }
