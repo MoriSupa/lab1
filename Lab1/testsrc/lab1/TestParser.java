@@ -32,7 +32,9 @@ public class TestParser {
 		// What if there is no arg?
 		String orders[] = {};
 		ArrayList<Beverage> result = parser.parse(orders);
-		assertNull(result);
+		//assertNull(result);
+		
+		assertEquals(result.size(),0);
 	}
 
 	@Test
@@ -40,7 +42,8 @@ public class TestParser {
 		// What if there is no beverage name?
 		String orders[] = { "small", "milk", "milk" };
 		ArrayList<Beverage> result = parser.parse(orders);
-		assertNull(result);
+		//assertNull(result);
+		assertEquals(result.size(),0);
 	}
 
 	@Test
@@ -48,7 +51,8 @@ public class TestParser {
 		// What if there the beverage name is misspelled?
 		String orders[] = { "Mokha", "small", "milk", "milk" };
 		ArrayList<Beverage> result = parser.parse(orders);
-		assertNull(result);
+		//assertNull(result);
+		assertEquals(result.size(),0);
 	}
 
 	@Test
@@ -56,7 +60,8 @@ public class TestParser {
 		// What if there is no size information?
 		String orders[] = { "Mocha", "milk", "milk" };
 		ArrayList<Beverage> result = parser.parse(orders);
-		assertNull(result);
+		//assertNull(result);
+		assertEquals(result.size(),0);
 	}
 
 	@Test
@@ -64,7 +69,8 @@ public class TestParser {
 		// What if the size is misspelled?
 		String orders[] = { "Mocha", "smoll", "milk", "milk" };
 		ArrayList<Beverage> result = parser.parse(orders);
-		assertNull(result);
+		//assertNull(result);
+		assertEquals(result.size(),0);
 	}
 
 	@Test
@@ -72,7 +78,8 @@ public class TestParser {
 		// What if some ingredients are misspelled?
 		String orders[] = { "Mocha", "small", "nilk" };
 		ArrayList<Beverage> result = parser.parse(orders);
-		assertNull(result);
+		//assertNull(result);
+		assertEquals(result.size(),0);
 	}
 
 	@Test
@@ -82,7 +89,7 @@ public class TestParser {
 		ArrayList<Beverage> result = parser.parse(orders);
 
 		// construct the expected result
-		assertEquals(new Beverage("green tea", "small", "tea"), result);
+		assertEquals(new Beverage("green tea", "small", "tea"), result.get(0));
 	}
 
 	@Test
@@ -93,7 +100,7 @@ public class TestParser {
 
 		// construct the expected result
 		String ingrs[] = { "chocolate" };
-		assertEquals(new Beverage("green tea", "small", "tea", ingrs), result);
+		assertEquals(new Beverage("green tea", "small", "tea", ingrs), result.get(0));
 	}
 
 	@Test
@@ -104,7 +111,7 @@ public class TestParser {
 
 		// construct the expected result
 		String ingrs[] = { "chocolate" };
-		assertEquals(new Beverage("espresso", "small", "coffee", ingrs), result);
+		assertEquals(new Beverage("espresso", "small", "coffee", ingrs), result.get(0));
 	}
 
 	@Test
@@ -115,6 +122,6 @@ public class TestParser {
 
 		// construct the expected result
 		String ingrs[] = { "chocolate", "whip cream" };
-		assertEquals(new Beverage("espresso", "small", "coffee", ingrs), result);
+		assertEquals(new Beverage("espresso", "small", "coffee", ingrs), result.get(0));
 	}
 }
