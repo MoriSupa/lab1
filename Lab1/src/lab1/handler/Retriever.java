@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class Retriever implements I_Retriever {
-	private final static String FILEPATH = "";
+	private final static String FILEPATH = "src/lab1/data/data.json";
 
 	public Retriever() {}
 	
