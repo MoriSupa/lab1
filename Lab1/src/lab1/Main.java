@@ -25,7 +25,6 @@ public class Main {
 
 		//compute the total cost
 
-		
 
 		double outcome=accounter.compute(parser.parse(args));
 		
