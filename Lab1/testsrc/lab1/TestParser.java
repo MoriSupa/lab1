@@ -97,11 +97,11 @@ public class TestParser {
 	@Test
 	public void parseNormalWithIngrs() {
 		// What if the input is "green tea small chocolate" ?
-		String orders[] = { "green", "tea", "small", "chocolate" };
+		String orders[] = { "green", "tea", "small", "ginger" };
 		ArrayList<Beverage> result = parser.parse(orders);
 
 		// construct the expected result
-		String ingrs[] = { "chocolate" };
+		String ingrs[] = { "ginger" };
 		assertEquals(new Beverage("green tea", "small", "tea", ingrs), result.get(0));
 	}
 

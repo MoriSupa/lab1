@@ -11,6 +11,11 @@
 				"large":1,
 				"medium":0.7,
 				"small":0.4
+			},
+			"ingredient":{
+				"chocolate":0.3,
+				"milk":0.3,
+				"whip cream":0.3
 			}
 		},
 		"tea":{
@@ -24,16 +29,14 @@
 				"large":0.7,
 				"medium":0.5,
 				"small":0.2
+			},
+			"ingredient":{
+				"milk":0.3,
+				"jasmine":0.5,
+				"ginger":0.6
 			}
 
 		}
-	},
-	"ingredient":{
-		"chocolate":0.3,
-		"milk":0.3,
-		"whip cream":0.3,
-		"jasmine":0.5,
-		"ginger":0.6
 	},
 	"mix":{
 		"mocha":"espresso,chocolate",

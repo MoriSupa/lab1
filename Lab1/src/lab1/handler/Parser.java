@@ -147,7 +147,7 @@ public class Parser implements I_Parser {
 	
 	//to parse integredients in the listorder as the name indicators
 	private boolean parseIngre(List<String> listOrder,Beverage bev){
-		JSONObject ingre=this.dic.getJSONObject("ingredient");
+		JSONObject ingre=this.dic.getJSONObject("basic").getJSONObject(bev.getCategory()).getJSONObject("ingredient");
 		String [] outcome;
 		while(listOrder.size()>0){
 			if((outcome=referValid(listOrder,ingre,false))!=null){

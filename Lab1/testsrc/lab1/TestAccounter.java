@@ -100,9 +100,9 @@ public class TestAccounter {
 	@Test
 	public void accountNormalWithIngrs() {
 		// What if the input is "green tea small chocolate milk" ?
-		String[] ingrs = { "chocolate", "milk" };
+		String[] ingrs = { "ginger", "milk" };
 		Beverage bev = new Beverage("green tea", "small", "tea", ingrs);
 		double result = accounter.compute(bev);
-		assertTrue(result == 1.8);
+		assertTrue(result == 2.1);
 	}
 }

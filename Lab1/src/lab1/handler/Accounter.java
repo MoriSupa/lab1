@@ -20,11 +20,10 @@ public class Accounter implements I_Accounter {
 		double total=0.0;
 		// add the base value
 		JSONObject baseInfo,ingre;
-		
-		ingre = dic.getJSONObject("ingredient");
-		
+			
 		if(dic.getJSONObject("basic").has(bev.getCategory())){
 			baseInfo = dic.getJSONObject("basic").getJSONObject(bev.getCategory());
+			ingre=baseInfo.getJSONObject("ingredient");
 		}else{
 			return -1;
 		}
