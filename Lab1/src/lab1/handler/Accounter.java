@@ -17,7 +17,7 @@ public class Accounter implements I_Accounter {
 	public double compute(Beverage bev) {
 		if(bev==null) return -1; //test whether beverage null
 			
-		double total = 0.0;
+		double total=0.0;
 		// add the base value
 		JSONObject baseInfo,ingre;
 		
@@ -57,6 +57,9 @@ public class Accounter implements I_Accounter {
 		return total;
 	}
 	
+	
+	//Behavior: refer to the cost book, if not have such a key return a quite min constant.
+	//Otherwise return the cost it finds.
 	private double robustRefer(JSONObject baseObj,String key){
 		final double QUITE_MIN=-10000;
 		return (baseObj.has(key))? baseObj.getDouble(key):QUITE_MIN;

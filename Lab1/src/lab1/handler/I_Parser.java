@@ -17,4 +17,10 @@ public interface I_Parser {
 	// Input: orders strings[is just args[] ] with a format according to the lab1.pdf
 	// Output: According to the design of beverage, the work of parser is only to parse to phrases(which is better for hashmap to process)
 	public ArrayList<Beverage> parse(String[] orders);
-}
+	
+	
+	//Input:An Order as a string(Like the basic requirements)
+	//Output:A Beverage after parsing
+	public Beverage parse(String order);
+	
+} 
