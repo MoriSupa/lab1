@@ -12,6 +12,11 @@ public class Beverage {
 	private ArrayList<String> ingredients; //a list of gradients in name
 	
 	
+	//default constructors
+	public Beverage(){
+		this.ingredients=new ArrayList<String>();
+	}
+	
 	
 	//basic constructors
 	public Beverage(String _base,String _size,String _category){
@@ -91,9 +96,11 @@ public class Beverage {
 	//override for equals, for whether two beverage are equals
 	public boolean equals(Object obj){
 		Beverage bev=(Beverage)obj;
-		boolean ingr_test=true;
+		boolean ingr_test=(bev.ingredients.size()==this.ingredients.size());
+		
+		//make the ingredients' equal justification been without considering the order
 		for(int i=0;i<bev.ingredients.size();i++){
-			ingr_test=ingr_test&&(this.ingredients.get(i).equals(bev.ingredients.get(i)));
+			ingr_test=ingr_test&&(this.ingredients.contains(bev.ingredients.get(i)))&&(bev.ingredients.contains(this.ingredients.get(i)));
 		}
 		
 		return (this.base.equals(bev.base)&&this.size.equals(bev.size)&&this.category.equals(bev.category)&&ingr_test);

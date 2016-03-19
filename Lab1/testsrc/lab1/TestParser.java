@@ -92,6 +92,8 @@ public class TestParser {
 		assertEquals(new Beverage("green tea", "small", "tea"), result.get(0));
 	}
 
+	
+	
 	@Test
 	public void parseNormalWithIngrs() {
 		// What if the input is "green tea small chocolate" ?
