@@ -16,15 +16,12 @@ public class Accounter implements I_Accounter {
 	@Override
 	public double compute(Beverage bev) {
 		if(bev==null) return -1; //test whether beverage null
-		
-		
+			
 		double total = 0.0;
 		// add the base value
-		JSONObject baseInfo;
+		JSONObject baseInfo,ingre;
 		
-		
-		
-		
+		ingre = dic.getJSONObject("ingredient");
 		
 		if(dic.getJSONObject("basic").has(bev.getCategory())){
 			baseInfo = dic.getJSONObject("basic").getJSONObject(bev.getCategory());
@@ -32,41 +29,37 @@ public class Accounter implements I_Accounter {
 			return -1;
 		}
 		
-		JSONObject ingre = dic.getJSONObject("ingredient");
+		//refer to kind costs
+		total+=robustRefer(baseInfo.getJSONObject("kind"),bev.getBase());
+		//refer to size costs
+		total+=robustRefer(baseInfo.getJSONObject("size"),bev.getSize());
 		
-		
-		//some test for illegal input
-		if(baseInfo.getJSONObject("kind").has(bev.getBase())){
-			total+=baseInfo.getJSONObject("kind").getDouble(bev.getBase());
-		}else{
-			return -1;
-		}
-		
-		if(baseInfo.getJSONObject("size").has(bev.getSize())){
-			total+=baseInfo.getJSONObject("size").getDouble(bev.getSize());
-		}else{
-			return -1;
-		}
-		
+		//refer to ingre costs
 		for (int i = 0; i < bev.getIngredients().size(); i++) {
-			if(ingre.has(bev.getIngredients().get(i))){
-				total += ingre.getDouble(bev.getIngredients().get(i));
-			}else{
-				return -1;
-			}
+			total+=robustRefer(ingre,bev.getIngredients().get(i));
 		}
-		
-		return total;
+		return (total<0)? -1:total;
 	}
 
 	// compute a list of beverage
+	//the behavior is to compute out the total cost only under the condition that all the beverages are legal.
 	@Override
 	public double compute(ArrayList<Beverage> bevs) {
 		double total = 0.0;
-		for (int i = 0; i < bevs.size(); i++) {
-			total += this.compute(bevs.get(i));
+		double single;
+		for (int i = 0; i < bevs.size(); i++) { 
+			if((single=this.compute(bevs.get(i)))<0){
+				return -1;
+			}else{
+				total+=single;
+			}
 		}
 		return total;
+	}
+	
+	private double robustRefer(JSONObject baseObj,String key){
+		final double QUITE_MIN=-10000;
+		return (baseObj.has(key))? baseObj.getDouble(key):QUITE_MIN;
 	}
 	
 	
