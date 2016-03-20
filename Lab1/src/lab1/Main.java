@@ -1,5 +1,6 @@
 package lab1;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
@@ -14,7 +15,9 @@ import lab1.handler.Retriever;
 
 public class Main {
 	public static void main(String[] args) {
-		//read the dictionary
+		
+
+		//fetch data
 		I_Retriever rtr=new Retriever();
 		JSONObject dic=rtr.retrieve();
 		
@@ -23,17 +26,29 @@ public class Main {
 		I_Accounter accounter=new Accounter(dic);
 		
 
+		//parse the  orders
+		ArrayList<Beverage> bevs=parser.parse(args);
+		
+		//what if illegal orders occur?
+		if(bevs.size()==0){
+			System.out.println("No Valid Order.SORRY");
+			return;
+		}
+		
+		
 		//compute the total cost
-
-
-		double outcome=accounter.compute(parser.parse(args));
+		double outcome=accounter.compute(bevs);
 		
-		//print some desciption here
-
+		//get some desciption here
+		for(int i=0;i<bevs.size();i++){
+			bevs.get(i).getDescription();
+		}
 		
 		
-		
-
 		//output the total cost
+		DecimalFormat df = new DecimalFormat(".0");
+		System.out.println("The total cost of your order is: "
+				+ df.format(outcome));
+		
 	}
 }
